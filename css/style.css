@@ -94,7 +94,7 @@ a {
 body {
   position: relative;
   font-family: "Rubik", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   background-color: var(--bg-color);
   color: var(--dark-color);
@@ -131,6 +131,16 @@ body::before {
   max-width: 1920px;
   margin: 32px auto;
   padding-inline: 32px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 500;
 }
 
 header {
@@ -262,5 +272,17 @@ button:active {
   box-shadow: var(--box-shadow);
   align-self: center;
   margin-bottom: 48px;
+  color: var(--dark-color);
+}
+
+/*---------- */
+/* IMPRESSUM */
+/*---------- */
+
+.impressum {
+  margin-top: 32px;
+}
+
+.impressum-link {
   color: var(--dark-color);
 }
