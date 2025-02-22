@@ -25,23 +25,242 @@ a {
   cursor: pointer;
 }
 
+/*---------- */
+/* VARIABLES */
+/*---------- */
+
+:root {
+  /* main colors */
+  --bg-color: #fff8e7;
+  --dark-color: #222222;
+
+  /* type colors */
+  /* --bug: #729f3f;
+  --dragon: #f16e57;
+  --fairy: #fdb8e9;
+  --fire: #fd7d25;
+  --ghost: #7a62a2;
+  --ground: #f8de41;
+  --normal: #a5acb1;
+  --psychic: #f266b9;
+  --steel: #9db7b8;
+  --dark: #707070;
+  --electric: #efd535;
+  --fighting: #d66724;
+  --flying: #3ec7ef;
+  --grass: #9bcc4f;
+  --ice: #53c4e8;
+  --poison: #b97fc8;
+  --rock: #a28c20;
+  --water: #4492c4; */
+
+  /* Darker type colors */
+  --bug: #3e5a23;
+  --dragon: #9f3c2f;
+  --fairy: #c97ca4;
+  --fire: #b74d18;
+  --ghost: #4b3962;
+  --ground: #b58b2f;
+  --normal: #66777b;
+  --psychic: #9f3d76;
+  --steel: #5c7a7b;
+  --dark: #363636;
+  --electric: #b3a126;
+  --fighting: #7f3c14;
+  --flying: #2578a8;
+  --grass: #4d6f2d;
+  --ice: #288496;
+  --poison: #6f3c6b;
+  --rock: #6b5614;
+  --water: #2c5e76;
+
+  /* shadows */
+  --box-shadow: 0px 4px 12px rgba(34, 34, 34, 0.2);
+  --drop-shadow: drop-shadow(5px 5px 5px var(--dark-color));
+  --text-shadow: 1px 1px 3px rgb(34, 34, 34, 0.5);
+
+  /* borders */
+  --border-radius-card: 14px;
+  --border-radius-btn: 8px;
+  --border-radius-tag: 100px;
+
+  /* transitions */
+  --transition: all 200ms ease-in-out;
+}
 /*-------- */
 /* GENERAL */
 /*-------- */
 
-:root {
-  --primary-color: #fff;
-  --transition: all 200ms ease-in-out;
+body {
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+  overflow-x: hidden;
 }
 
-body {
-  font-family: "Rubik", sans-serif;
-  font-weight: 100;
-  font-size: 16px;
+body::before,
+body::after {
+  content: url("../assets/img/ball.png");
+  position: absolute;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+body::after {
+  top: -160px;
+  right: -260px;
+}
+
+body::before {
+  bottom: 0px;
+  left: -260px;
 }
 
 .main-layout {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1920px;
+  margin: 32px auto;
+  padding-inline: 32px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin: 32px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+  background-color: #3d68bf;
+  color: #fff;
+}
+
+a {
+  color: #fdedb4;
+}
+
+button {
+  color: #fff;
+  border: transparent;
+  border-radius: var(--border-radius-btn);
+  padding: 12px 32px;
+  background: var(--dark-color);
+  align-self: center;
+  transition: 0.2s;
+}
+
+button:hover {
+  color: var(--dark-color);
+  transform: translate(-0.25rem, -0.25rem);
+  background-color: #fecd03;
+  box-shadow: 0.25rem 0.25rem var(--dark-color);
+}
+
+button:active {
+  transform: translate(0);
+  box-shadow: none;
+  border: 1px solid var(--dark-color);
+}
+
+/*------ */
+/* UTILS */
+/*------ */
+
+.mt-1 {
+  margin-top: 16px;
+}
+
+.mt-2 {
+  margin-top: 32px;
+}
+
+/*----- */
+/* CARD */
+/*----- */
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  color: #fff;
+  text-shadow: var(--text-shadow);
+  font-size: 24px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 350px;
+  height: 200px;
+  padding: 16px;
+  background-color: #4492c4;
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--box-shadow);
+}
+
+.card2 {
+  position: relative;
+  width: 350px;
+  height: 200px;
+  padding: 16px;
+  background-color: var(--normal);
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--box-shadow);
+}
+
+.card-img {
+  max-width: 125px;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  -webkit-filter: var(--drop-shadow);
+  filter: var(--drop-shadow);
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.type-tag {
+  display: inline-block;
+  font-size: 16px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-tag);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+}
+
+/*---------- */
+/* SEARCHBAR */
+/*---------- */
+
+.search-input {
+  width: 300px;
+  padding: 16px;
+  border: transparent;
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--box-shadow);
+  align-self: center;
+  margin-bottom: 48px;
+  color: var(--dark-color);
 }
