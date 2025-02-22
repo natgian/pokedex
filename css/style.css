@@ -20,11 +20,6 @@ svg {
   display: block;
 }
 
-button,
-a {
-  cursor: pointer;
-}
-
 /*---------- */
 /* VARIABLES */
 /*---------- */
@@ -76,7 +71,7 @@ a {
 
   /* shadows */
   --box-shadow: 0px 4px 12px rgba(34, 34, 34, 0.2);
-  --drop-shadow: drop-shadow(5px 5px 5px var(--dark-color));
+  --drop-shadow: 5px 5px 5px var(--dark-color);
   --text-shadow: 1px 1px 3px rgb(34, 34, 34, 0.5);
 
   /* borders */
@@ -133,6 +128,12 @@ body::before {
   padding-inline: 32px;
 }
 
+button,
+a,
+.card {
+  cursor: pointer;
+}
+
 h1 {
   font-size: 32px;
   font-weight: 500;
@@ -146,7 +147,7 @@ h2 {
 header {
   display: flex;
   justify-content: center;
-  margin: 32px;
+  margin: 48px 32px;
 }
 
 footer {
@@ -165,19 +166,21 @@ a {
 
 button {
   color: #fff;
+  font-weight: 400;
   border: transparent;
   border-radius: var(--border-radius-btn);
   padding: 12px 32px;
   background: var(--dark-color);
   align-self: center;
-  transition: 0.2s;
+  transition: var(--transition);
 }
 
 button:hover {
   color: var(--dark-color);
   transform: translate(-0.25rem, -0.25rem);
   background-color: #fecd03;
-  box-shadow: 0.25rem 0.25rem var(--dark-color);
+  /* box-shadow: 0.25rem 0.25rem var(--dark-color); */
+  box-shadow: 5px 5px 5px var(--dark-color);
 }
 
 button:active {
@@ -223,6 +226,12 @@ button:active {
   background-color: #4492c4;
   border-radius: var(--border-radius-card);
   box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
+
+.card:hover {
+  filter: drop-shadow(var(--drop-shadow));
+  transform: scale(1.05);
 }
 
 .card2 {
@@ -240,8 +249,8 @@ button:active {
   position: absolute;
   bottom: 16px;
   right: 16px;
-  -webkit-filter: var(--drop-shadow);
-  filter: var(--drop-shadow);
+  -webkit-filter: drop-shadow(var(--drop-shadow));
+  filter: drop-shadow(var(--drop-shadow));
 }
 
 .card-title {
