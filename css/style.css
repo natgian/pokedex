@@ -30,7 +30,7 @@ svg {
   --dark-color: #222222;
 
   /* type colors */
-  /* --bug: #729f3f;
+  --bug: #729f3f;
   --dragon: #f16e57;
   --fairy: #fdb8e9;
   --fire: #fd7d25;
@@ -47,27 +47,27 @@ svg {
   --ice: #53c4e8;
   --poison: #b97fc8;
   --rock: #a28c20;
-  --water: #4492c4; */
+  --water: #4492c4;
 
   /* Darker type colors */
-  --bug: #3e5a23;
-  --dragon: #9f3c2f;
-  --fairy: #c97ca4;
-  --fire: #b74d18;
-  --ghost: #4b3962;
-  --ground: #b58b2f;
-  --normal: #66777b;
-  --psychic: #9f3d76;
-  --steel: #5c7a7b;
-  --dark: #363636;
-  --electric: #b3a126;
-  --fighting: #7f3c14;
-  --flying: #2578a8;
-  --grass: #4d6f2d;
-  --ice: #288496;
-  --poison: #6f3c6b;
-  --rock: #6b5614;
-  --water: #2c5e76;
+  --bug-dark: #3e5a23;
+  --dragon-dark: #9f3c2f;
+  --fairy-dark: #c97ca4;
+  --fire-dark: #b74d18;
+  --ghost-dark: #4b3962;
+  --ground-dark: #b58b2f;
+  --normal-dark: #66777b;
+  --psychic-dark: #9f3d76;
+  --steel-dark: #5c7a7b;
+  --dark-dark: #363636;
+  --electric-dark: #b3a126;
+  --fighting-dark: #7f3c14;
+  --flying-dark: #2578a8;
+  --grass-dark: #4d6f2d;
+  --ice-dark: #288496;
+  --poison-dark: #6f3c6b;
+  --rock-dark: #6b5614;
+  --water-dark: #2c5e76;
 
   /* shadows */
   --box-shadow: 0px 4px 12px rgba(34, 34, 34, 0.2);
@@ -144,6 +144,10 @@ h2 {
   font-weight: 500;
 }
 
+.error-message {
+  color: red;
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -179,8 +183,7 @@ button:hover {
   color: var(--dark-color);
   transform: translate(-0.25rem, -0.25rem);
   background-color: #fecd03;
-  /* box-shadow: 0.25rem 0.25rem var(--dark-color); */
-  box-shadow: 5px 5px 5px var(--dark-color);
+  box-shadow: var(--drop-shadow);
 }
 
 button:active {
@@ -211,7 +214,6 @@ button:active {
   justify-content: center;
   gap: 32px;
   color: #fff;
-  text-shadow: var(--text-shadow);
   font-size: 24px;
 }
 
@@ -223,9 +225,9 @@ button:active {
   width: 350px;
   height: 200px;
   padding: 16px;
-  background-color: #4492c4;
   border-radius: var(--border-radius-card);
   box-shadow: var(--box-shadow);
+  text-shadow: var(--text-shadow);
   transition: var(--transition);
 }
 
@@ -294,4 +296,8 @@ button:active {
 
 .impressum-link {
   color: var(--dark-color);
+}
+
+.impressum-link:hover {
+  color: #3d68bf;
 }
