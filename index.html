@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
+    <script src="./js/script.js" defer></script>
+    <script src="./js/templates.js" defer></script>
     <title>Pokédex</title>
   </head>
-  <body class="main-layout">
+  <body class="main-layout" onload="init()">
     <header>
       <a href="./index.html">
         <img src="./assets/logos/logo.png" alt="Pokemon Logo" />
@@ -19,104 +21,7 @@
       <input placeholder="Search..." id="input" name="text" type="search" class="search-input" />
 
       <!-- Cards -->
-      <div class="cards-container">
-        <div class="card">
-          <div>
-            <h2 class="card-title">Charmander</h2>
-            <p class="mt-1">#7</p>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt=""
-            class="card-img"
-          />
-
-          <div class="card-tags-container">
-            <span class="type-tag">Grass</span>
-            <span class="type-tag">Fighting</span>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <h2 class="card-title">Charmander</h2>
-            <p class="mt-1">#7</p>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt=""
-            class="card-img"
-          />
-
-          <div class="card-tags-container">
-            <span class="type-tag">Grass</span>
-            <span class="type-tag">Fighting</span>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <h2 class="card-title">Charmander</h2>
-            <p class="mt-1">#7</p>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt=""
-            class="card-img"
-          />
-
-          <div class="card-tags-container">
-            <span class="type-tag">Grass</span>
-            <span class="type-tag">Fighting</span>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <h2 class="card-title">Charmander</h2>
-            <p class="mt-1">#7</p>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt=""
-            class="card-img"
-          />
-
-          <div class="card-tags-container">
-            <span class="type-tag">Grass</span>
-            <span class="type-tag">Fighting</span>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <h2 class="card-title">Charmander</h2>
-            <p class="mt-1">#7</p>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt=""
-            class="card-img"
-          />
-
-          <div class="card-tags-container">
-            <span class="type-tag">Grass</span>
-            <span class="type-tag">Fighting</span>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <h2 class="card-title">Charmander</h2>
-            <p class="mt-1">#7</p>
-          </div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-            alt=""
-            class="card-img"
-          />
-
-          <div class="card-tags-container">
-            <span class="type-tag">Grass</span>
-            <span class="type-tag">Fighting</span>
-          </div>
-        </div>
-      </div>
+      <div class="cards-container" id="cards-container"></div>
 
       <!-- Load more button -->
       <button class="mt-2">Load more</button>
