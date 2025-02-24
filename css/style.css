@@ -236,16 +236,6 @@ button:active {
   transform: scale(1.05);
 }
 
-.card2 {
-  position: relative;
-  width: 350px;
-  height: 200px;
-  padding: 16px;
-  background-color: var(--normal);
-  border-radius: var(--border-radius-card);
-  box-shadow: var(--box-shadow);
-}
-
 .card-img {
   max-width: 125px;
   position: absolute;
@@ -300,4 +290,34 @@ button:active {
 
 .impressum-link:hover {
   color: #3d68bf;
+}
+
+/*-------------- */
+/* MEDIA QUERIES */
+/*-------------- */
+
+@media (max-width: 435px) {
+  .container {
+    padding: 0;
+  }
+
+  header img {
+    max-width: 250px;
+  }
+
+  .card {
+    width: 240px;
+    height: 240px;
+  }
+
+  .type-tag {
+    padding: 8px 12px;
+    align-self: flex-start;
+  }
+
+  .card-tags-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 }
