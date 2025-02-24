@@ -12,6 +12,7 @@ function init() {
 
 async function getAllPokemons() {
   cardsRef.innerHTML = "";
+
   try {
     const response = await fetch(`${BASE_URL}pokemon?limit=20&offset=0`);
 
@@ -25,11 +26,22 @@ async function getAllPokemons() {
 
     for (const pokemon of allPokemons) {
       const pokemonData = await fetchSinglePokemonData(pokemon.url);
-      renderCardTemplate(pokemonData);
+      const processedData = processData(pokemonData);
+
+      renderCardTemplate(processedData);
     }
   } catch (error) {
     showErrorMessage(error);
   }
+}
+
+function processData(data) {
+  return {
+    name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
+    img: data.sprites?.other?.["official-artwork"]?.["front_default"],
+    types: data.types.map((typeName) => typeName.type.name.charAt(0).toUpperCase() + typeName.type.name.slice(1)),
+    id: data.id,
+  };
 }
 
 async function fetchSinglePokemonData(url) {
@@ -47,12 +59,12 @@ async function fetchSinglePokemonData(url) {
 }
 
 function showErrorMessage(error) {
-  console.log(`Something went wrong: ${error}`);
+  console.error(`Something went wrong: ${error}`);
   cardsRef.innerHTML = `<p class="error-message">Something went wrong: Error ${error}.
       <br>
       Please try again later.</p>`;
 }
 
-function renderCardTemplate(pokemon) {
-  cardsRef.innerHTML += cardTemplate(pokemon);
+function renderCardTemplate(data) {
+  cardsRef.innerHTML += cardTemplate(data);
 }
