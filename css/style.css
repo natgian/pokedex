@@ -30,44 +30,44 @@ svg {
   --dark-color: #222222;
 
   /* type colors */
-  --bug: #729f3f;
-  --dragon: #f16e57;
-  --fairy: #fdb8e9;
-  --fire: #fd7d25;
-  --ghost: #7a62a2;
-  --ground: #f8de41;
-  --normal: #a5acb1;
-  --psychic: #f266b9;
-  --steel: #9db7b8;
-  --dark: #707070;
-  --electric: #efd535;
-  --fighting: #d66724;
-  --flying: #3ec7ef;
-  --grass: #9bcc4f;
-  --ice: #53c4e8;
-  --poison: #b97fc8;
-  --rock: #a28c20;
-  --water: #4492c4;
+  --Bug: #729f3f;
+  --Dragon: #f16e57;
+  --Fairy: #fdb8e9;
+  --Fire: #fd7d25;
+  --Ghost: #7a62a2;
+  --Ground: #f8de41;
+  --Normal: #a5acb1;
+  --Psychic: #f266b9;
+  --Steel: #9db7b8;
+  --Dark: #707070;
+  --Electric: #efd535;
+  --Fighting: #d66724;
+  --Flying: #3ec7ef;
+  --Grass: #9bcc4f;
+  --Ice: #53c4e8;
+  --Poison: #b97fc8;
+  --Rock: #a28c20;
+  --Water: #4492c4;
 
   /* Darker type colors */
-  --bug-dark: #3e5a23;
-  --dragon-dark: #9f3c2f;
-  --fairy-dark: #c97ca4;
-  --fire-dark: #b74d18;
-  --ghost-dark: #4b3962;
-  --ground-dark: #b58b2f;
-  --normal-dark: #66777b;
-  --psychic-dark: #9f3d76;
-  --steel-dark: #5c7a7b;
-  --dark-dark: #363636;
-  --electric-dark: #b3a126;
-  --fighting-dark: #7f3c14;
-  --flying-dark: #2578a8;
-  --grass-dark: #4d6f2d;
-  --ice-dark: #288496;
-  --poison-dark: #6f3c6b;
-  --rock-dark: #6b5614;
-  --water-dark: #2c5e76;
+  --Bug-dark: #3e5a23;
+  --Dragon-dark: #9f3c2f;
+  --Fairy-dark: #c97ca4;
+  --Fire-dark: #b74d18;
+  --Ghost-dark: #4b3962;
+  --Ground-dark: #b58b2f;
+  --Normal-dark: #66777b;
+  --Psychic-dark: #9f3d76;
+  --Steel-dark: #5c7a7b;
+  --Dark-dark: #363636;
+  --Electric-dark: #b3a126;
+  --Fighting-dark: #7f3c14;
+  --Flying-dark: #2578a8;
+  --Grass-dark: #4d6f2d;
+  --Ice-dark: #288496;
+  --Poison-dark: #6f3c6b;
+  --Rock-dark: #6b5614;
+  --Water-dark: #2c5e76;
 
   /* shadows */
   --box-shadow: 0px 4px 12px rgba(34, 34, 34, 0.2);
@@ -144,10 +144,6 @@ h2 {
   font-weight: 500;
 }
 
-.error-message {
-  color: red;
-}
-
 header {
   display: flex;
   justify-content: center;
@@ -192,6 +188,10 @@ button:active {
   border: 1px solid var(--dark-color);
 }
 
+.error-message {
+  color: red;
+}
+
 /*------ */
 /* UTILS */
 /*------ */
@@ -204,9 +204,9 @@ button:active {
   margin-top: 32px;
 }
 
-/*----- */
-/* CARD */
-/*----- */
+/*------ */
+/* CARDs */
+/*------ */
 
 .cards-container {
   display: flex;
@@ -264,7 +264,7 @@ button:active {
   display: inline-block;
   font-size: 16px;
   padding: 12px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--border-radius-tag);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
