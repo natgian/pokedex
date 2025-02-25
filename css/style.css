@@ -167,7 +167,12 @@ footer {
 }
 
 a {
-  color: #fdedb4;
+  color: inherit;
+  transition: var(--transition);
+}
+
+a:hover {
+  font-weight: 500;
 }
 
 #load-btn {
@@ -288,6 +293,12 @@ a {
 /* IMPRESSUM */
 /*---------- */
 
+.impressum-container {
+  display: flex;
+  flex-direction: column;
+  margin: 32px auto;
+  padding: 32px;
+}
 .impressum {
   margin-top: 32px;
 }
