@@ -82,6 +82,7 @@ svg {
   /* transitions */
   --transition: all 200ms ease-in-out;
 }
+
 /*-------- */
 /* GENERAL */
 /*-------- */
@@ -93,10 +94,14 @@ body {
   font-size: 16px;
   background-color: var(--bg-color);
   color: var(--dark-color);
+}
+
+body,
+html {
   overflow-x: hidden;
 }
 
-body::before,
+footer::before,
 body::after {
   content: url("../assets/img/ball.png");
   position: absolute;
@@ -109,7 +114,7 @@ body::after {
   right: -260px;
 }
 
-body::before {
+footer::before {
   bottom: 0px;
   left: -260px;
 }
@@ -151,6 +156,7 @@ header {
 }
 
 footer {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,25 +170,27 @@ a {
   color: #fdedb4;
 }
 
-button {
+#load-btn {
+  display: none;
   color: #fff;
   font-weight: 400;
   border: transparent;
   border-radius: var(--border-radius-btn);
   padding: 12px 32px;
+  margin: 48px 0 16px 0;
   background: var(--dark-color);
   align-self: center;
   transition: var(--transition);
 }
 
-button:hover {
+#load-btn:hover {
   color: var(--dark-color);
   transform: translate(-0.25rem, -0.25rem);
   background-color: #fecd03;
   box-shadow: var(--drop-shadow);
 }
 
-button:active {
+#load-btn:active {
   transform: translate(0);
   box-shadow: none;
   border: 1px solid var(--dark-color);
@@ -297,6 +305,9 @@ button:active {
 /*-------------- */
 
 @media (max-width: 435px) {
+  body::before {
+    display: none;
+  }
   .container {
     padding: 0;
   }
