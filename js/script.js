@@ -1,5 +1,7 @@
 //Refs
 const cardsRef = document.getElementById("cards-container");
+const loaderRef = document.getElementById("loader");
+const loadButton = document.getElementById("load-btn");
 
 // API
 const BASE_URL = "https://pokeapi.co/api/v2/";
@@ -14,15 +16,14 @@ function init() {
 
 async function getInitialPokemons() {
   cardsRef.innerHTML = "";
-  fetchPokemons();
-}
-
-async function loadMorePokemons() {
-  offset = offset + 20;
+  cardsRef.style.display = "none";
+  showLoader();
   fetchPokemons();
 }
 
 async function fetchPokemons() {
+  showLoader();
+
   try {
     const response = await fetch(`${BASE_URL}pokemon?limit=${limit}&offset=${offset}`);
 
@@ -32,16 +33,20 @@ async function fetchPokemons() {
     }
 
     const data = await response.json();
-    allPokemons = data.results;
+    const newPokemons = data.results;
+    const newPokemonData = [];
 
-    for (const pokemon of allPokemons) {
+    for (const pokemon of newPokemons) {
       const pokemonData = await fetchSinglePokemonData(pokemon.url);
       const processedData = processData(pokemonData);
-
-      renderCardTemplate(processedData);
+      newPokemonData.push(processedData);
     }
+
+    newPokemonData.forEach((processedData) => renderCardTemplate(processedData));
   } catch (error) {
     showErrorMessage(error);
+  } finally {
+    hideLoader();
   }
 }
 
@@ -66,6 +71,22 @@ function processData(data) {
     types: data.types.map((typeName) => typeName.type.name.charAt(0).toUpperCase() + typeName.type.name.slice(1)),
     id: data.id,
   };
+}
+
+async function loadMorePokemons() {
+  offset = offset + 20;
+  await fetchPokemons(true);
+}
+
+function showLoader() {
+  loaderRef.style.display = "flex";
+  loadButton.style.display = "none";
+}
+
+function hideLoader() {
+  loaderRef.style.display = "none";
+  loadButton.style.display = "block";
+  cardsRef.style.display = "flex";
 }
 
 function showErrorMessage(error) {

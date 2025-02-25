@@ -9,6 +9,7 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/loader.css" />
     <script src="./js/script.js" defer></script>
     <script src="./js/templates.js" defer></script>
     <title>Pokédex</title>
@@ -21,14 +22,19 @@
     </header>
     <main class="container">
       <!-- Searchbar -->
-
       <input placeholder="Search..." id="input" name="text" type="search" class="search-input" />
 
       <!-- Cards -->
       <div class="cards-container" id="cards-container"></div>
 
+      <!-- Loader -->
+      <div class="loader-container" id="loader">
+        Loading
+        <span class="loader"></span>
+      </div>
+
       <!-- Load more button -->
-      <button class="mt-2" onclick="loadMorePokemons()">Load more</button>
+      <button id="load-btn" class="mt-2" onclick="loadMorePokemons()">Load more</button>
     </main>
     <footer>
       <a href="./impressum.html">Impressum</a>
