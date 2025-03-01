@@ -17,7 +17,6 @@ function init() {
 
 async function getInitialPokemons() {
   cardsRef.innerHTML = "";
-  cardsRef.style.display = "none";
   showLoader();
   fetchPokemons();
 }
@@ -40,7 +39,6 @@ async function fetchPokemons() {
     for (const pokemon of newPokemons) {
       const pokemonData = await fetchSinglePokemonData(pokemon.url);
       const processedPokemonData = processData(pokemonData);
-      console.log(processedPokemonData);
       allPokemons.push(processedPokemonData);
       newPokemonData.push(processedPokemonData);
     }
@@ -114,7 +112,6 @@ function renderCardTemplate(data) {
 
 function openModal(id) {
   const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
-
   renderModalTemplate(singlePokemon);
   renderModalContentTemplate(singlePokemon, aboutTemplate);
 }
