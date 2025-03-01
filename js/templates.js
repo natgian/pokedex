@@ -70,6 +70,9 @@ function aboutTemplate({ species, height, weight, abilities, types }) {
             <td>${abilities.join(", ")}</td>
           </tr>
         </table>
+        <div class="modal-tags-container">
+            ${types.map((type) => `<span class="type-tag" style="background-color: var(--${type})">${type}</span>`).join(" ")}
+        </div>
       </div>
   `;
 }
@@ -122,7 +125,7 @@ function statsTemplate({ stats, types }) {
         </div>
 
         <div>
-          <span class="bold">Total</span>
+          <span class="bold">Total:</span>
           <span class="bold">${Object.values(stats).reduce((sum, statValue) => sum + statValue, 0)}</span>
         </div>
       </div>
