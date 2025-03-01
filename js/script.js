@@ -2,6 +2,7 @@
 const cardsRef = document.getElementById("cards-container");
 const loaderRef = document.getElementById("loader");
 const loadButton = document.getElementById("load-btn");
+const modalRef = document.getElementById("modal");
 
 // API
 const BASE_URL = "https://pokeapi.co/api/v2/";
@@ -38,11 +39,13 @@ async function fetchPokemons() {
 
     for (const pokemon of newPokemons) {
       const pokemonData = await fetchSinglePokemonData(pokemon.url);
-      const processedData = processData(pokemonData);
-      newPokemonData.push(processedData);
+      const processedPokemonData = processData(pokemonData);
+      console.log(processedPokemonData);
+      allPokemons.push(processedPokemonData);
+      newPokemonData.push(processedPokemonData);
     }
 
-    newPokemonData.forEach((processedData) => renderCardTemplate(processedData));
+    newPokemonData.forEach((processedPokemonData) => renderCardTemplate(processedPokemonData));
   } catch (error) {
     showErrorMessage(error);
   } finally {
@@ -66,10 +69,19 @@ async function fetchSinglePokemonData(url) {
 
 function processData(data) {
   return {
+    id: data.id,
     name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
     img: data.sprites?.other?.["official-artwork"]?.["front_default"],
     types: data.types.map((typeName) => typeName.type.name.charAt(0).toUpperCase() + typeName.type.name.slice(1)),
-    id: data.id,
+    height: data.height / 10,
+    weight: data.weight / 10,
+    species: data.species?.name.charAt(0).toUpperCase() + data.species?.name.slice(1),
+    abilities: data.abilities.map((abilityName) => abilityName.ability.name.charAt(0).toUpperCase() + abilityName.ability.name.slice(1)),
+    stats: data.stats.reduce((statsObject, statData) => {
+      const statName = statData.stat.name.charAt(0).toUpperCase() + statData.stat.name.slice(1);
+      statsObject[statName] = statData.base_stat;
+      return statsObject;
+    }, {}),
   };
 }
 
@@ -98,4 +110,40 @@ function showErrorMessage(error) {
 
 function renderCardTemplate(data) {
   cardsRef.innerHTML += cardTemplate(data);
+}
+
+function openModal(id) {
+  const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
+
+  renderModalTemplate(singlePokemon);
+  renderModalContentTemplate(singlePokemon, aboutTemplate);
+}
+
+function closeModal() {
+  modalRef.style.display = "none";
+}
+
+function renderModalTemplate(data) {
+  modalRef.innerHTML = modalTemplate(data);
+  modalRef.style.display = "flex";
+}
+
+function renderModalContentTemplate(data, template) {
+  const modalContentRef = document.getElementById("modal-content");
+  modalContentRef.innerHTML = "";
+  modalContentRef.innerHTML += template(data);
+}
+
+function showStats(id) {
+  const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
+  renderModalContentTemplate(singlePokemon, statsTemplate);
+  document.getElementById("about-btn").classList.remove("current-selection");
+  document.getElementById("stats-btn").classList.add("current-selection");
+}
+
+function showAbout(id) {
+  const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
+  renderModalContentTemplate(singlePokemon, aboutTemplate);
+  document.getElementById("about-btn").classList.add("current-selection");
+  document.getElementById("stats-btn").classList.remove("current-selection");
 }

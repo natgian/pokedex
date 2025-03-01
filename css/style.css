@@ -217,6 +217,10 @@ a:hover {
   margin-top: 32px;
 }
 
+.bold {
+  font-weight: 500;
+}
+
 /*------ */
 /* CARDs */
 /*------ */
@@ -261,6 +265,11 @@ a:hover {
 .card-title {
   font-size: 32px;
   font-weight: 600;
+}
+
+.card-id {
+  display: block;
+  padding: 8px 0;
 }
 
 .type-tag {

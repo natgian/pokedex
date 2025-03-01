@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="./css/loader.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
     <script src="./js/script.js" defer></script>
     <script src="./js/templates.js" defer></script>
     <title>Pokédex</title>
@@ -17,12 +18,15 @@
   <body class="main-layout" onload="init()">
     <header>
       <a href="./index.html">
-        <img src="./assets/logos/logo.png" alt="Pokemon Logo" />
+        <img src="./assets/logos/logo.png" alt="Pokédex Logo" />
       </a>
     </header>
     <main class="container">
       <!-- Searchbar -->
       <input placeholder="Search..." id="input" name="text" type="search" class="search-input" />
+
+      <!-- Modal -->
+      <div id="modal" class="modal" onclick="closeModal()"></div>
 
       <!-- Cards -->
       <div class="cards-container" id="cards-container"></div>
