@@ -88,6 +88,50 @@ async function loadMorePokemons() {
   await fetchPokemons(true);
 }
 
+function getPrevious(id) {
+  if (id === 1) {
+    return;
+  }
+  const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id - 1);
+  document.getElementById("modal-title").innerHTML = `${singlePokemon.name} #${singlePokemon.id}`;
+  document.querySelector(
+    ".modal-container"
+  ).style.backgroundImage = `linear-gradient(to top, var(--bg-color), var(--${singlePokemon.types[0]}))`;
+  document.querySelector(".modal-img").src = singlePokemon.img;
+  document.getElementById("about-btn").setAttribute("onclick", `showAbout(${singlePokemon.id})`);
+  document.getElementById("stats-btn").setAttribute("onclick", `showStats(${singlePokemon.id})`);
+  document.querySelector(".prev").setAttribute("onclick", `getPrevious(${singlePokemon.id})`);
+  document.querySelector(".next").setAttribute("onclick", `getNext(${singlePokemon.id})`);
+
+  if (document.getElementById("about-btn").classList.contains("current-selection")) {
+    renderModalContentTemplate(singlePokemon, aboutTemplate);
+  } else {
+    renderModalContentTemplate(singlePokemon, statsTemplate);
+  }
+}
+
+function getNext(id) {
+  if (id >= allPokemons.length) {
+    return;
+  }
+  const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id + 1);
+  document.getElementById("modal-title").innerHTML = `${singlePokemon.name} #${singlePokemon.id}`;
+  document.querySelector(
+    ".modal-container"
+  ).style.backgroundImage = `linear-gradient(to top, var(--bg-color), var(--${singlePokemon.types[0]}))`;
+  document.querySelector(".modal-img").src = singlePokemon.img;
+  document.getElementById("about-btn").setAttribute("onclick", `showAbout(${singlePokemon.id})`);
+  document.getElementById("stats-btn").setAttribute("onclick", `showStats(${singlePokemon.id})`);
+  document.querySelector(".prev").setAttribute("onclick", `getPrevious(${singlePokemon.id})`);
+  document.querySelector(".next").setAttribute("onclick", `getNext(${singlePokemon.id})`);
+
+  if (document.getElementById("about-btn").classList.contains("current-selection")) {
+    renderModalContentTemplate(singlePokemon, aboutTemplate);
+  } else {
+    renderModalContentTemplate(singlePokemon, statsTemplate);
+  }
+}
+
 function showLoader() {
   loaderRef.style.display = "flex";
   loadButton.style.display = "none";
@@ -106,10 +150,6 @@ function showErrorMessage(error) {
       Please try again later.</p>`;
 }
 
-function renderCardTemplate(data) {
-  cardsRef.innerHTML += cardTemplate(data);
-}
-
 function openModal(id) {
   const singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
   renderModalTemplate(singlePokemon);
@@ -118,6 +158,10 @@ function openModal(id) {
 
 function closeModal() {
   modalRef.style.display = "none";
+}
+
+function renderCardTemplate(data) {
+  cardsRef.innerHTML += cardTemplate(data);
 }
 
 function renderModalTemplate(data) {

@@ -24,8 +24,8 @@ function modalTemplate({ name, img, id, types }) {
       <div class="modal-container" onclick="event.stopPropagation()" style="background-image: linear-gradient(to top, var(--bg-color), var(--${types[0]}))">
           <button class="close-btn"><img src="./assets/icons/cross.svg" alt="close button" onclick="closeModal()" /></button>
 
-          <div id="modal-title">
-            <span class="card-title">${name} #${id}</span>
+          <div id="modal-title-wrapper">
+            <span class="card-title" id="modal-title">${name} #${id}</span>
             <img
               src=${img}
               alt="${name}"
@@ -34,11 +34,17 @@ function modalTemplate({ name, img, id, types }) {
           </div>
 
           <div class="modal-info-wrapper">
-            <div class="modal-navigation">
-              <button id="about-btn" class="modal-nav-btn current-selection" onclick="showAbout(${id})">About</button>
-              <button id="stats-btn" class="modal-nav-btn" onclick="showStats(${id})">Stats</button>
+            <div class="modal-tabs-container">
+              <button id="about-btn" class="modal-tab-btn current-selection" onclick="showAbout(${id})">About</button>
+              <button id="stats-btn" class="modal-tab-btn" onclick="showStats(${id})">Stats</button>
             </div>
+
             <div id="modal-content"></div>
+          
+            <div class="modal-navigation">
+              <button class="arrow-btn prev" onclick="getPrevious(${id})"><img src="./assets/icons/angle-left.svg" alt="left arrow"/></button>
+              <button class="arrow-btn next" onclick="getNext(${id})"><img src="./assets/icons/angle-right.svg" alt="right arrow"/></button>
+            </div>
           </div>
 
         </div>
