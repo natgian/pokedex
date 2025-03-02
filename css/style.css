@@ -149,23 +149,6 @@ h2 {
   font-weight: 500;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  margin: 48px 32px;
-}
-
-footer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 32px;
-  background-color: #3d68bf;
-  color: #fff;
-}
-
 a {
   color: inherit;
   transition: var(--transition);
@@ -205,6 +188,23 @@ a:hover {
   color: red;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  margin: 48px 32px;
+}
+
+footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+  background-color: #3d68bf;
+  color: #fff;
+}
+
 /*------ */
 /* UTILS */
 /*------ */
@@ -219,68 +219,6 @@ a:hover {
 
 .bold {
   font-weight: 500;
-}
-
-/*------ */
-/* CARDs */
-/*------ */
-
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-  color: #fff;
-  font-size: 24px;
-}
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 350px;
-  height: 200px;
-  padding: 16px;
-  border-radius: var(--border-radius-card);
-  box-shadow: var(--box-shadow);
-  text-shadow: var(--text-shadow);
-  transition: var(--transition);
-}
-
-.card:hover {
-  filter: drop-shadow(var(--drop-shadow));
-  transform: scale(1.05);
-}
-
-.card-img {
-  max-width: 125px;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  -webkit-filter: drop-shadow(var(--drop-shadow));
-  filter: drop-shadow(var(--drop-shadow));
-}
-
-.card-title {
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.card-id {
-  display: block;
-  padding: 8px 0;
-}
-
-.type-tag {
-  display: inline-block;
-  font-size: 16px;
-  padding: 12px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: var(--border-radius-tag);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
 }
 
 /*---------- */
@@ -334,21 +272,5 @@ a:hover {
 
   header img {
     max-width: 250px;
-  }
-
-  .card {
-    width: 240px;
-    height: 240px;
-  }
-
-  .type-tag {
-    padding: 8px 12px;
-    align-self: flex-start;
-  }
-
-  .card-tags-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
   }
 }
