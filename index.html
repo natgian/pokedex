@@ -21,11 +21,14 @@
       <a href="./index.html">
         <img src="./assets/logos/logo.png" alt="Pokédex Logo" />
       </a>
+
+      <!-- Searchbar -->
+      <div class="searchbar-container">
+        <input placeholder="Search by name (min. 3 characters)..." id="search-input" name="text" type="search" class="search-input" />
+        <img src="./assets/icons/search.svg" alt="search icon" class="search-icon" />
+      </div>
     </header>
     <main class="container">
-      <!-- Searchbar -->
-      <input placeholder="Search..." id="input" name="text" type="search" class="search-input" />
-
       <!-- Modal -->
       <div id="modal" class="modal" onclick="closeModal()"></div>
 
@@ -39,7 +42,7 @@
       </div>
 
       <!-- Load more button -->
-      <button id="load-btn" class="mt-2" onclick="loadMorePokemons()">Load more</button>
+      <div id="buttons-container"></div>
     </main>
     <footer>
       <a href="./impressum.html">Impressum</a>
