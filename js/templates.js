@@ -35,8 +35,8 @@ function modalTemplate({ name, img, id, types }) {
 
           <div class="modal-info-wrapper">
             <div class="modal-tabs-container">
-              <button id="about-btn" class="modal-tab-btn current-selection" onclick="showAbout(${id})">About</button>
-              <button id="stats-btn" class="modal-tab-btn" onclick="showStats(${id})">Stats</button>
+              <button id="about-btn" class="modal-tab-btn current-selection" onclick="renderAbout(${id})">About</button>
+              <button id="stats-btn" class="modal-tab-btn" onclick="renderStats(${id})">Stats</button>
             </div>
 
             <div id="modal-content"></div>
@@ -136,4 +136,16 @@ function statsTemplate({ stats, types }) {
         </div>
       </div>
   `;
+}
+
+function buttonTemplate(currentArray) {
+  if (currentArray === allFilteredPokemons) {
+    return `
+      <button id="load-btn" class="mt-2" onclick="reloadInitialPokemons()">Reload Pokemons</button>
+    `;
+  } else {
+    return `
+      <button id="load-btn" class="mt-2" onclick="loadMorePokemons()">Load more</button>
+    `;
+  }
 }
