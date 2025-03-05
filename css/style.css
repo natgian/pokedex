@@ -158,8 +158,12 @@ a:hover {
   font-weight: 500;
 }
 
+#buttons-container {
+  display: flex;
+  justify-content: center;
+}
+
 #load-btn {
-  display: none;
   color: #fff;
   font-weight: 400;
   border: transparent;
@@ -190,8 +194,10 @@ a:hover {
 
 header {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin: 48px 32px;
+  margin: 32px;
 }
 
 footer {
@@ -225,15 +231,33 @@ footer {
 /* SEARCHBAR */
 /*---------- */
 
+.searchbar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  position: relative;
+  margin-top: 48px;
+}
+
+.search-icon {
+  position: absolute;
+  margin: auto;
+  width: 20px;
+  top: 16px;
+  left: 16px;
+  color: var(--dark-color);
+  opacity: 0.5;
+}
+
 .search-input {
   width: 300px;
   padding: 16px;
   border: transparent;
   border-radius: var(--border-radius-card);
   box-shadow: var(--box-shadow);
-  align-self: center;
-  margin-bottom: 48px;
   color: var(--dark-color);
+  padding-left: 48px;
 }
 
 /*---------- */
@@ -263,7 +287,7 @@ footer {
 /*-------------- */
 
 @media (max-width: 435px) {
-  body::before {
+  footer::before {
     display: none;
   }
   .container {
@@ -272,5 +296,11 @@ footer {
 
   header img {
     max-width: 250px;
+  }
+}
+
+@media (max-width: 360px) {
+  .search-input {
+    width: 260px;
   }
 }
