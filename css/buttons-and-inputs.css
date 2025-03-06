@@ -1,0 +1,124 @@
+/*-------- */
+/* BUTTONS */
+/*---------*/
+
+#buttons-container {
+  display: flex;
+  justify-content: center;
+}
+
+#load-btn {
+  color: #fff;
+  font-weight: 400;
+  border: transparent;
+  border-radius: var(--border-radius-btn);
+  padding: 12px 32px;
+  margin: 48px 0 16px 0;
+  background: var(--dark-color);
+  align-self: center;
+  transition: var(--transition);
+}
+
+#load-btn:hover {
+  color: var(--dark-color);
+  transform: translate(-0.25rem, -0.25rem);
+  background-color: var(--primary-color);
+  box-shadow: var(--drop-shadow);
+}
+
+#load-btn:active {
+  transform: translate(0);
+  box-shadow: none;
+}
+
+#scroll-to-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 32px;
+  background-color: var(--dark-color);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 16px;
+  z-index: 2;
+  transition: var(--transition);
+}
+
+#scroll-to-top-icon {
+  width: 24px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+#scroll-to-top-btn:hover {
+  transform: translate(-0.25rem, -0.25rem);
+  background-color: var(--primary-color);
+  box-shadow: var(--drop-shadow);
+}
+
+#scroll-to-top-btn:hover #scroll-to-top-icon {
+  filter: invert(11%) sepia(4%) saturate(23%) hue-rotate(72deg) brightness(97%) contrast(93%);
+}
+
+#scroll-to-top-btn:active {
+  transform: translate(0);
+  box-shadow: none;
+}
+
+/* #scroll-to-top-btn:active #scroll-to-top-icon {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+} */
+
+/*---------- */
+/* SEARCHBAR */
+/*---------- */
+
+.searchbar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  position: relative;
+  margin-top: 48px;
+}
+
+.search-icon {
+  position: absolute;
+  margin: auto;
+  width: 18px;
+  top: 16px;
+  left: 16px;
+  color: var(--dark-color);
+  opacity: 0.5;
+}
+
+.search-input {
+  width: 350px;
+  padding: 16px;
+  border: transparent;
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--box-shadow);
+  color: var(--dark-color);
+  padding-left: 40px;
+}
+
+/*-------------- */
+/* MEDIA QUERIES */
+/*-------------- */
+
+@media (max-width: 425px) {
+  .search-input {
+    width: 300px;
+  }
+  .search-input::placeholder {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .search-input {
+    width: 260px;
+  }
+  .search-input::placeholder {
+    font-size: 11px;
+  }
+}
