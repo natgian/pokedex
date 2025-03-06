@@ -33,6 +33,7 @@ function renderButtonTemplate(currentArray) {
 function reloadInitialPokemons() {
   cardsRef.innerHTML = "";
   allPokemons.map((pokemon) => renderCardTemplate(pokemon)).join("");
+  renderButtonTemplate(allPokemons);
 }
 
 async function fetchPokemons() {
