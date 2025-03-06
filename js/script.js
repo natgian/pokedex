@@ -267,6 +267,7 @@ function processData(data) {
     }, {}),
   };
 }
+
 async function fetchAndProcessSinglePokemonData(pokemon) {
   const pokemonData = await fetchSinglePokemonData(pokemon.url);
   const processedPokemonData = processData(pokemonData);
