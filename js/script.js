@@ -4,7 +4,6 @@ const loaderRef = document.getElementById("loader");
 const modalRef = document.getElementById("modal");
 const buttonsRef = document.getElementById("buttons-container");
 const searchInputRef = document.getElementById("search-input");
-const scrollToTopRef = document.getElementById("scroll-to-top-btn");
 
 // API
 const BASE_URL = "https://pokeapi.co/api/v2/";
@@ -18,6 +17,8 @@ let usedArray = allPokemons;
 
 function init() {
   getInitialPokemons();
+  handleSearchInput();
+  handleScrollToTop();
 }
 
 // Fetching functions
@@ -29,27 +30,16 @@ async function getInitialPokemons() {
 
 async function fetchPokemons() {
   showLoader();
-
   try {
     const response = await fetch(`${BASE_URL}pokemon?limit=${limit}&offset=${offset}`);
 
-    if (!response.ok) {
-      showErrorMessage(response.status);
-      return;
-    }
+    if (!response.ok) return showErrorMessage(response.status);
 
     const data = await response.json();
-    const newPokemons = data.results;
-    const newPokemonData = [];
+    const newPokemons = await processPokemonList(data.results);
 
-    for (const pokemon of newPokemons) {
-      const pokemonData = await fetchSinglePokemonData(pokemon.url);
-      const processedPokemonData = processData(pokemonData);
-      newPokemonData.push(processedPokemonData);
-      allPokemons.push(processedPokemonData);
-    }
+    newPokemons.map((pokemon) => renderCardTemplate(pokemon)).join("");
 
-    newPokemonData.map((pokemon) => renderCardTemplate(pokemon)).join("");
     renderButtonTemplate(allPokemons);
   } catch (error) {
     showErrorMessage(error);
@@ -81,25 +71,16 @@ async function loadMorePokemons() {
 async function fetchFilteredPokemons(query) {
   try {
     const response = await fetch(`${BASE_URL}pokemon?limit=1025`);
-
-    if (!response.ok) {
-      showErrorMessage(response.status);
-      return;
-    }
+    if (!response.ok) return showErrorMessage(response.status);
 
     const data = await response.json();
     const filteredPokemons = data.results.filter((pokemon) => pokemon.name.startsWith(query));
-
-    if (filteredPokemons.length === 0) {
-      allFilteredPokemons = [];
-      cardsRef.innerHTML = `<p class="error-message">No results. Please try another search.</p>`;
-      return;
-    }
+    if (filteredPokemons.length === 0) return showNoResultMessage();
 
     allFilteredPokemons = [];
 
     for (const pokemon of filteredPokemons) {
-      await fetchAndProcessSinglePokemonData(pokemon);
+      await fetchAndProcessSinglePokemonData(pokemon, allFilteredPokemons);
     }
 
     allFilteredPokemons.map((pokemon) => renderCardTemplate(pokemon));
@@ -197,6 +178,11 @@ function showErrorMessage(error) {
       Please try again later.</p>`;
 }
 
+function showNoResultMessage() {
+  allFilteredPokemons = [];
+  cardsRef.innerHTML = `<p class="error-message">No results. Please try another search.</p>`;
+}
+
 function renderCardTemplate(data) {
   cardsRef.innerHTML += cardTemplate(data);
 }
@@ -238,6 +224,15 @@ function renderAbout(id) {
 }
 
 // Helper functions
+async function processPokemonList(pokemonList) {
+  const newPokemonData = [];
+  for (const pokemon of pokemonList) {
+    const processedPokemonData = await fetchAndProcessSinglePokemonData(pokemon, newPokemonData);
+    allPokemons.push(processedPokemonData);
+  }
+  return newPokemonData;
+}
+
 function processData(data) {
   return {
     id: data.id,
@@ -256,10 +251,11 @@ function processData(data) {
   };
 }
 
-async function fetchAndProcessSinglePokemonData(pokemon) {
+async function fetchAndProcessSinglePokemonData(pokemon, array) {
   const pokemonData = await fetchSinglePokemonData(pokemon.url);
   const processedPokemonData = processData(pokemonData);
-  allFilteredPokemons.push(processedPokemonData);
+  array.push(processedPokemonData);
+  return processedPokemonData;
 }
 
 function disableScroll() {
@@ -271,30 +267,33 @@ function enableScroll() {
 }
 
 // Event listeners
-searchInputRef.addEventListener("input", (event) => {
-  renderButtonTemplate(allFilteredPokemons);
-  const query = event.target.value.trim().toString().toLowerCase();
+function handleSearchInput() {
+  searchInputRef.addEventListener("input", (event) => {
+    renderButtonTemplate(allFilteredPokemons);
+    const query = event.target.value.trim().toString().toLowerCase();
 
-  if (query === "") {
-    reloadInitialPokemons();
-  }
+    if (query === "") {
+      reloadInitialPokemons();
+    }
 
-  if (query.length >= 3) {
-    cardsRef.innerHTML = "";
-    fetchFilteredPokemons(query);
-  }
-});
+    if (query.length >= 3) {
+      cardsRef.innerHTML = "";
+      fetchFilteredPokemons(query);
+    }
+  });
+}
 
-if (scrollToTopRef) {
+function handleScrollToTop() {
+  const scrollToTopRef = document.getElementById("scroll-to-top-btn");
+
+  if (!scrollToTopRef) return;
+
   scrollToTopRef.style.display = "none";
 
   document.addEventListener("scroll", () => {
-    if (document.documentElement.scrollTop <= 50) {
-      scrollToTopRef.style.display = "none";
-    } else {
-      scrollToTopRef.style.display = "block";
-    }
+    scrollToTopRef.style.display = document.documentElement.scrollTop <= 50 ? "none" : "block";
   });
+
   scrollToTopRef.addEventListener("click", () => {
     document.body.scrollIntoView({ behavior: "smooth" });
   });
