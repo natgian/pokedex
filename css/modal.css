@@ -55,7 +55,7 @@
 
 .modal-tabs-container {
   color: var(--dark-color);
-  margin: 16px 0;
+  margin: 0 0 16px 0;
   display: flex;
   gap: 48px;
   padding-bottom: 16px;
@@ -104,11 +104,11 @@ th {
 }
 
 td {
-  padding: 8px;
+  padding: 16px 8px;
 }
 
 .modal-tags-container {
-  margin: 32px 0;
+  margin: 18px 0 75px 0;
   color: #fff;
   text-shadow: var(--text-shadow);
   font-weight: 400;
@@ -146,10 +146,6 @@ td {
 /*-------------- */
 
 @media (max-width: 550px) {
-  .modal {
-    align-items: normal;
-    padding: 16px 0;
-  }
   .modal-container {
     width: 300px;
   }
@@ -167,6 +163,10 @@ td {
     margin: 0;
     font-size: 14px;
     padding-bottom: 8px;
+  }
+
+  .modal-tags-container {
+    margin: 8px 0 0 0;
   }
 
   .current-selection {
@@ -189,12 +189,5 @@ td {
 
   .arrow-btn {
     width: 16px;
-  }
-}
-
-@media (orientation: landscape) {
-  .modal {
-    align-items: flex-start;
-    padding-top: 32px;
   }
 }
