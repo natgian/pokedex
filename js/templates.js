@@ -42,8 +42,8 @@ function modalTemplate({ name, img, id, types }) {
             <div id="modal-content"></div>
           
             <div class="modal-navigation">
-              <button class="arrow-btn prev" onclick="getPrevious(${id})"><img src="./assets/icons/angle-left.svg" alt="left arrow"/></button>
-              <button class="arrow-btn next" onclick="getNext(${id})"><img src="./assets/icons/angle-right.svg" alt="right arrow"/></button>
+              <button id="prev-btn" class="arrow-btn prev" onclick="navigatePokemon(${id}, 'prev')"><img src="./assets/icons/angle-left.svg" alt="left arrow"/></button>
+              <button id="next-btn" class="arrow-btn next" onclick="navigatePokemon(${id}, 'next')"><img src="./assets/icons/angle-right.svg" alt="right arrow"/></button>
             </div>
           </div>
 
@@ -141,7 +141,7 @@ function statsTemplate({ stats, types }) {
 function buttonTemplate(currentArray) {
   if (currentArray === allFilteredPokemons) {
     return `
-      <button id="load-btn" class="mt-2" onclick="reloadInitialPokemons()">Reload Pokemons</button>
+      <button id="load-btn" class="mt-2" onclick="reloadInitialPokemons()">Go back</button>
     `;
   } else {
     return `
