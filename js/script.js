@@ -198,7 +198,7 @@ function renderModalContentTemplate(data, template) {
   modalContentRef.innerHTML += template(data);
 }
 
-function renderStats(id) {
+function renderPokemonDetails(id, template, activeBtn, inactiveBtn) {
   let singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
 
   if (!singlePokemon) {
@@ -206,21 +206,17 @@ function renderStats(id) {
     currentArray = allFilteredPokemons;
   }
 
-  renderModalContentTemplate(singlePokemon, statsTemplate);
-  document.getElementById("about-btn").classList.remove("current-selection");
-  document.getElementById("stats-btn").classList.add("current-selection");
+  renderModalContentTemplate(singlePokemon, template);
+  document.getElementById(activeBtn).classList.add("current-selection");
+  document.getElementById(inactiveBtn).classList.remove("current-selection");
+}
+
+function renderStats(id) {
+  renderPokemonDetails(id, statsTemplate, "stats-btn", "about-btn");
 }
 
 function renderAbout(id) {
-  let singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
-
-  if (!singlePokemon) {
-    singlePokemon = allFilteredPokemons.find((pokemon) => pokemon.id === id);
-  }
-
-  renderModalContentTemplate(singlePokemon, aboutTemplate);
-  document.getElementById("about-btn").classList.add("current-selection");
-  document.getElementById("stats-btn").classList.remove("current-selection");
+  renderPokemonDetails(id, aboutTemplate, "about-btn", "stats-btn");
 }
 
 // Helper functions
