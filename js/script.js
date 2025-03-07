@@ -276,7 +276,7 @@ searchInputRef.addEventListener("input", (event) => {
   const query = event.target.value.trim().toString().toLowerCase();
 
   if (query === "") {
-    cardsRef.innerHTML = "";
+    reloadInitialPokemons();
   }
 
   if (query.length >= 3) {
