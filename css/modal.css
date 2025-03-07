@@ -18,7 +18,7 @@
   flex-direction: column;
   width: 500px;
   height: fit-content;
-  padding: 32px 0;
+  padding: 32px 0 0 0;
   color: var(--dark-color);
   background-color: var(--bg-color);
   border-radius: var(--border-radius-card);
@@ -101,14 +101,17 @@
 /*------ */
 th {
   padding-right: 32px;
+  display: flex;
+  align-items: flex-end; /* Align text to the bottom */
+  justify-content: flex-start; /* Align text to the left */
 }
 
 td {
-  padding: 16px 8px;
+  padding: 0 8px 16px 8px;
 }
 
 .modal-tags-container {
-  margin: 18px 0 75px 0;
+  margin: 18px 0 155px 0;
   color: #fff;
   text-shadow: var(--text-shadow);
   font-weight: 400;
@@ -166,7 +169,7 @@ td {
   }
 
   .modal-tags-container {
-    margin: 8px 0 0 0;
+    margin: 8px 0 96px 0;
   }
 
   .current-selection {
