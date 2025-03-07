@@ -66,6 +66,7 @@ async function fetchSinglePokemonData(url) {
       showErrorMessage(response.status);
       return;
     }
+
     return await response.json();
   } catch (error) {
     showErrorMessage(error);
@@ -120,6 +121,7 @@ function reloadInitialPokemons() {
 
 function openModal(id) {
   disableScroll();
+
   let singlePokemon = allPokemons.find((pokemon) => pokemon.id === id);
   usedArray = allPokemons;
 
@@ -128,7 +130,9 @@ function openModal(id) {
     usedArray = allFilteredPokemons;
   }
 
+  const currentIndex = usedArray.findIndex((pok) => pok.id === id);
   renderModalTemplate(singlePokemon, usedArray);
+  disableButtons(currentIndex);
   renderModalContentTemplate(singlePokemon, aboutTemplate);
 }
 
@@ -137,46 +141,30 @@ function closeModal() {
   modalRef.style.display = "none";
 }
 
-function getPrevious(id) {
+function navigatePokemon(id, direction) {
   const currentIndex = usedArray.findIndex((pokemon) => pokemon.id === id);
-  const prevPokemon = usedArray[currentIndex - 1];
+  const newIndex = direction === "prev" ? currentIndex - 1 : currentIndex + 1;
+  const newPokemon = usedArray[newIndex];
 
-  if (currentIndex <= 0) {
-    return;
-  }
-
-  if (!prevPokemon) {
-    return;
-  }
-
-  updateModalWithNewData(prevPokemon);
+  disableButtons(newIndex);
+  updateModalWithNewData(newPokemon);
 
   if (document.getElementById("about-btn").classList.contains("current-selection")) {
-    renderModalContentTemplate(prevPokemon, aboutTemplate);
+    renderModalContentTemplate(newPokemon, aboutTemplate);
   } else {
-    renderModalContentTemplate(prevPokemon, statsTemplate);
+    renderModalContentTemplate(newPokemon, statsTemplate);
   }
 }
 
-function getNext(id) {
-  const currentIndex = usedArray.findIndex((pokemon) => pokemon.id === id);
-  const nextPokemon = usedArray[currentIndex + 1];
+function disableButtons(index) {
+  const prevBtnRef = document.getElementById("prev-btn");
+  const nextBtnRef = document.getElementById("next-btn");
 
-  if (!nextPokemon) {
-    return;
-  }
+  prevBtnRef.disabled = index <= 0;
+  nextBtnRef.disabled = index >= usedArray.length - 1;
 
-  if (currentIndex >= usedArray.length - 1) {
-    return;
-  }
-
-  updateModalWithNewData(nextPokemon);
-
-  if (document.getElementById("about-btn").classList.contains("current-selection")) {
-    renderModalContentTemplate(nextPokemon, aboutTemplate);
-  } else {
-    renderModalContentTemplate(nextPokemon, statsTemplate);
-  }
+  prevBtnRef.style.opacity = index <= 0 ? "0" : "1";
+  nextBtnRef.style.opacity = index >= usedArray.length - 1 ? "0" : "1";
 }
 
 function updateModalWithNewData(singlePokemon) {
@@ -187,8 +175,8 @@ function updateModalWithNewData(singlePokemon) {
   document.querySelector(".modal-img").src = singlePokemon.img;
   document.getElementById("about-btn").setAttribute("onclick", `renderAbout(${singlePokemon.id})`);
   document.getElementById("stats-btn").setAttribute("onclick", `renderStats(${singlePokemon.id})`);
-  document.querySelector(".prev").setAttribute("onclick", `getPrevious(${singlePokemon.id})`);
-  document.querySelector(".next").setAttribute("onclick", `getNext(${singlePokemon.id})`);
+  document.querySelector(".prev").setAttribute("onclick", `navigatePokemon(${singlePokemon.id}, 'prev')`);
+  document.querySelector(".next").setAttribute("onclick", `navigatePokemon(${singlePokemon.id}, 'next')`);
 }
 
 function showLoader() {
