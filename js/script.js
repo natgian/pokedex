@@ -69,11 +69,10 @@ async function loadMorePokemons() {
 }
 
 async function fetchFilteredPokemons(query) {
+  showLoader();
   try {
-    const response = await fetch(`${BASE_URL}pokemon?limit=1025`);
-    if (!response.ok) return showErrorMessage(response.status);
+    const data = await fetchAllPokemons();
 
-    const data = await response.json();
     const filteredPokemons = data.results.filter((pokemon) => pokemon.name.startsWith(query));
     if (filteredPokemons.length === 0) return showNoResultMessage();
 
@@ -86,7 +85,15 @@ async function fetchFilteredPokemons(query) {
     allFilteredPokemons.map((pokemon) => renderCardTemplate(pokemon));
   } catch (error) {
     showErrorMessage(error);
+  } finally {
+    hideLoader();
   }
+}
+
+async function fetchAllPokemons() {
+  const response = await fetch(`${BASE_URL}pokemon?limit=1025`);
+  if (!response.ok) return showErrorMessage(response.status);
+  return response.json();
 }
 
 // Render functions
